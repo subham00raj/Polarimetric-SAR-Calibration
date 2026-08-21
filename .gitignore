@@ -1,0 +1,16 @@
+*.html
+*.txt
+*.ann
+*.llh
+*.lkv
+*.slc
+.env
+*.png
+.whl
+*.npy
+__pycache__/
+Covariance/
+output/
+data/
+!requirements.txt
+thesis/
