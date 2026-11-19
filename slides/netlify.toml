@@ -1,0 +1,5 @@
+# The site's base directory is `slides`, so paths here are relative to it.
+# The deck is plain static HTML served directly from this folder; no build step is needed.
+[build]
+  publish = "."
+  command = ""
