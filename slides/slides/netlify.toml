@@ -1,0 +1,16 @@
+# Why this file lives in slides/slides/:
+# The site's "Base directory" is `slides` and its "Package directory" is also
+# `slides`. Netlify resolves the package directory relative to the base, so it
+# looks for its config at slides/slides/netlify.toml. That is this file.
+# Without it, the publish folder defaults to slides/slides and the deploy fails.
+#
+# Paths below are relative to the base directory (`slides`), so "." publishes
+# the static slide deck in slides/ as-is. No build step is needed.
+#
+# If the "Package directory" setting is ever cleared, this file is no longer
+# read, and the publish folder falls back to the base directory (`slides`),
+# which also works.
+[build]
+  base = "slides"
+  publish = "."
+  command = ""
