@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14 · Stage 3: cross-talk (Ainsworth) · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="assets/algorithms.css">
+</head>
+<body data-slide-index="13">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">14 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide algo-a" data-sec="4" data-name="Stage 3: cross-talk (Ainsworth)" data-tr="push">
+  <div class="eyebrow" data-a="up">04 · Calibration models · Stage 3 of 4</div>
+  <h2 class="title">Ainsworth: make two views of the same scattering agree</h2>
+  <p class="algo-lead" data-a="up">A reciprocal target has S<sub>HV</sub> = S<sub>VH</sub>. Different measured HV and VH responses therefore contain clues about gain imbalance, leakage and noise.</p>
+  <div class="algo-body">
+    <div data-a="up" data-step="1"><div class="algo-label">Start with the physics</div><h3>One signal, two distorted measurements</h3>
+      <div class="algo-mix"><div class="algo-eq compact">O<sub>HV</sub> ≈ a<sub>1</sub>S<sub>HV</sub> + b<sub>1</sub>S<sub>HH</sub> + c<sub>1</sub>S<sub>VV</sub> + n<sub>1</sub><br>O<sub>VH</sub> ≈ a<sub>2</sub>S<sub>HV</sub> + b<sub>2</sub>S<sub>HH</sub> + c<sub>2</sub>S<sub>VV</sub> + n<sub>2</sub></div><p>First-order illustration: a terms scale the desired signal; b and c terms leak co-pol energy into it.</p></div>
+      <p>We do not know the true signal in any pixel. Average many pixels instead: <span class="m">C = ⟨o o<sup>†</sup>⟩</span>, with <span class="m">o = [O<sub>HH</sub>, O<sub>HV</sub>, O<sub>VH</sub>, O<sub>VV</sub>]<sup>T</sup></span>.</p>
+    </div>
+    <div data-a="up" data-step="2"><div class="algo-label">Turn reciprocity into a statistical target</div><h3>Match the corrected HV/VH statistics</h3>
+      <div class="algo-cov"><span>Σ ≈</span><div class="mat"><span>P<sub>H</sub></span><span>A*</span><span>A*</span><span>D</span><span class="pair">A</span><span>β + η</span><span>β</span><span class="pair">B</span><span class="pair">A</span><span>β</span><span>β + η</span><span class="pair">B</span><span>D*</span><span>B*</span><span>B*</span><span>P<sub>V</sub></span></div></div>
+      <p>Equal A and B entries encode the same HV/VH relationships to HH and VV. <b>A and B may remain non-zero</b>: real scene correlations are retained.</p>
+      <p>β is shared cross-pol power; η models equal, uncorrelated noise. Match statistics, not noisy pixel values.</p>
+    </div>
+  </div>
+  <div class="algo-loop" data-a="up" data-step="3">
+    <div class="node"><strong>1 · Balance</strong><p>Start with zero leakage. Estimate relative HV/VH gain α from covariance; compensate it.</p></div><span class="arrow">→</span>
+    <div class="node"><strong>2 · Remove leakage</strong><p>Linearize the covariance mismatch. Solve 8 real increments for 4 complex leakage coefficients.</p></div><span class="arrow">→</span>
+    <div class="node"><strong>3 · Recheck the balance</strong><p>Leakage removal changes the gain estimate. Update α, rescale the leakage terms, and repeat.</p></div>
+  </div>
+  <p class="algo-return" data-a="up" data-step="3">↶ Repeat until parameters change negligibly; then apply <span class="m">s<sub>cal</sub> = M<sup>−1</sup>o</span> to each pixel. Thesis: typically 4–6 iterations.</p>
+  <div class="algo-bottom" data-a="up" data-step="4"><b>What makes it different?</b><p>It retains real co-/cross-pol correlations. Reciprocity needs heuristic completion and normalization; absolute and co-pol gains still need independent calibration.</p></div>
+  <p class="algo-source" data-a="up" data-step="4">Ainsworth, Ferro-Famil &amp; Lee (2006), DOI: 10.1109/TGRS.2005.862508; thesis Chs. 2–3. Mixing equations are explanatory; the implementation solves the coupled covariance model.</p>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

@@ -31,7 +31,6 @@ figures/
 *.jpg
 *.jpeg
 *.gif
-*.html
 *.txt
 
 # ---- Thesis, reports and papers (not code) ----

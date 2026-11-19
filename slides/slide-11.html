@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 · Calibration model · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+.model-equation{margin-top:25px;padding:28px 20px 22px;text-align:center}
+.full-model{display:flex;align-items:flex-start;justify-content:center;gap:13px;font-size:29px;white-space:nowrap}
+.full-model .mat{gap:6px 14px;padding:5px 13px;line-height:1.4}
+.full-model .operator{padding-top:24px;font-family:var(--serif)}
+.full-model .factor{text-align:center}
+.full-model .factor .cap{font-family:var(--sans);font-style:normal;font-size:12px;margin-top:15px;letter-spacing:.03em}
+.full-model .scalar{padding-top:23px}
+.model-legend{font-size:15px;color:var(--mute);margin-top:24px}
+.model-explanation{margin-top:22px}
+.model-explanation h3{font:500 29px var(--serif)}
+.signal-route{display:flex;align-items:center;justify-content:space-between;margin:16px 0 14px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.signal-route .stop{text-align:center;width:230px}
+.signal-route .stop strong{display:block;font:italic 31px var(--serif);margin-bottom:7px}
+.signal-route .stop span{font-size:15px;color:var(--mute)}
+.signal-route .route-arrow{font-size:26px;color:#777}
+.model-reason{display:grid;grid-template-columns:330px 1fr;gap:35px;margin-top:12px;font-size:18px;line-height:1.5}
+.model-reason b{font-weight:600}
+.model-reason p{color:var(--mute)}
+.model-source{font-size:12px;color:var(--mute);margin-top:17px}
+</style>
+</head>
+<body data-slide-index="10">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">11 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide" data-sec="4" data-name="Calibration model">
+  <div class="eyebrow" data-a="up">04 · Calibration models</div>
+  <h2 class="title">The distortion model</h2>
+  <div class="card model-equation" data-a="up">
+    <div class="full-model"><div class="factor"><div class="mat"><span>O<sub>hh</sub></span><span>O<sub>hv</sub></span><span>O<sub>vh</sub></span><span>O<sub>vv</sub></span></div><div class="cap">measured · O</div></div><span class="operator">=</span><div class="factor scalar"><span class="m">A e<sup>iψ</sup></span><div class="cap">common gain · K</div></div><div class="factor"><div class="mat"><span>1</span><span>w</span><span>u</span><span>f<sub>2</sub></span></div><div class="cap">receive · R</div></div><div class="factor"><div class="mat"><span>cos Ω</span><span>sin Ω</span><span>−sin Ω</span><span>cos Ω</span></div><div class="cap">return · F<sub>Ω</sub></div></div><div class="factor"><div class="mat"><span>S<sub>hh</sub></span><span>S<sub>hv</sub></span><span>S<sub>vh</sub></span><span>S<sub>vv</sub></span></div><div class="cap">true target · S</div></div><div class="factor"><div class="mat"><span>cos Ω</span><span>sin Ω</span><span>−sin Ω</span><span>cos Ω</span></div><div class="cap">outward · F<sub>Ω</sub></div></div><div class="factor"><div class="mat"><span>1</span><span>z</span><span>v</span><span>f<sub>1</sub></span></div><div class="cap">transmit · T</div></div><span class="operator">+</span><div class="factor"><div class="mat"><span>N<sub>hh</sub></span><span>N<sub>hv</sub></span><span>N<sub>vh</sub></span><span>N<sub>vv</sub></span></div><div class="cap">additive noise · N</div></div></div>
+    <p class="model-legend"><span class="m">f<sub>j</sub> = g<sub>j</sub> e<sup>iΔφ<sub>j</sub></sup></span>: relative gain + phase · <span class="m">u, w, v, z</span>: complex H/V leakage · <span class="m">Ω</span>: one-way Faraday rotation angle</p>
+  </div>
+  <div class="model-explanation" data-a="up" data-step="1">
+    <h3>One signal encounters distortions on the way out and on the way back.</h3>
+    <div class="signal-route" aria-label="Signal travel order, corresponding to the matrix product read from right to left">
+      <div class="stop"><strong>T</strong><span>Transmit hardware errors</span></div><span class="route-arrow">→</span>
+      <div class="stop"><strong>F<sub>Ω</sub></strong><span>Outward ionosphere crossing</span></div><span class="route-arrow">→</span>
+      <div class="stop"><strong>S</strong><span>Scattering at the target</span></div><span class="route-arrow">→</span>
+      <div class="stop"><strong>F<sub>Ω</sub></strong><span>Return ionosphere crossing</span></div><span class="route-arrow">→</span>
+      <div class="stop"><strong>R</strong><span>Receive hardware errors</span></div>
+    </div>
+  </div>
+  <div class="model-reason" data-a="up" data-step="2"><b>Why two hardware matrices?</b><p>Gain, phase delay and H/V leakage arise during both transmission and reception. T and R describe these separate responses; their parameter values need not be equal.</p></div>
+  <div class="model-reason" data-a="up" data-step="2"><b>Why does F<sub>Ω</sub> appear twice?</b><p>The wave crosses the ionosphere twice. Faraday rotation is non-reciprocal: in this convention the same F<sub>Ω</sub> acts on each leg. For airborne UAVSAR, Ω ≈ 0 and both matrices reduce to I.</p></div>
+  <div class="model-reason" data-a="up" data-step="3"><b>Why multiply the matrices?</b><p>Each stage mixes or scales the two H/V field components. Successive linear transformations multiply; read the equation from right to left. Hardware H→H gains are normalized to 1 and absorbed into K.</p></div>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

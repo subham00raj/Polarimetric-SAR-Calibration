@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>20 · Cross-talk and channel imbalance · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+.combined-results{display:grid;grid-template-columns:880px 1fr;gap:32px;margin-top:26px}.cross-results{height:620px;padding:24px 28px}.cross-results h3{font-size:21px}.cross-key{display:flex;gap:24px;margin-top:13px;font-size:13px}.cross-key span{display:flex;align-items:center;gap:8px}.cross-key i{width:23px;height:8px;border-radius:8px}.imbalance-results h3{font:500 27px var(--serif)}.combined-muted{font-size:14px;color:var(--mute);margin-top:8px}.alpha-summary{border-collapse:collapse;width:100%;margin-top:14px;font-size:18px}.alpha-summary th{text-align:left;font-size:12px;color:var(--mute);font-weight:500}.alpha-summary td,.alpha-summary th{padding:12px 0;border-bottom:1px solid var(--line)}.alpha-summary td:last-child{text-align:right;font-weight:600}.combined-note,.imbalance-explanation p{font-size:16px;line-height:1.5;color:var(--mute);margin-top:12px}.imbalance-explanation{margin-top:18px}.imbalance-evidence{padding:12px 16px;border-radius:12px;background:var(--surf);margin-top:20px;font-size:14px;line-height:1.6}.imbalance-evidence p{font-size:14px;line-height:1.5;color:var(--mute);margin-top:5px}
+</style>
+</head>
+<body data-slide-index="19">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">20 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide" data-sec="6" data-name="Cross-talk and channel imbalance" data-tr="push">
+  <div class="eyebrow" data-a="up">06 · Results</div>
+  <h2 class="title">Cross-talk falls; channel imbalance separates the models</h2>
+  <div class="combined-results">
+    <div class="card cross-results" data-a="up">
+      <h3>Cross-talk magnitude across 3000 range lines (dB)</h3>
+      <div class="cross-key"><span><i style="background:#c4c4c4"></i>Before</span><span><i style="background:#000"></i>After</span></div>
+      <div id="xtChart" style="position:relative;margin-top:18px;height:500px"></div>
+    </div>
+    <div class="imbalance-results">
+      <div data-a="up" data-step="1"><h3>α shows the difference</h3><p class="combined-muted">Estimated |α| range across the swath</p>
+      <table class="alpha-summary"><thead><tr><th>Model</th><th>Range (dB)</th></tr></thead><tbody><tr><td>Ainsworth</td><td>−6.25 to +1.25</td></tr><tr><td>Quegan</td><td>−5.35 to +18.55</td></tr></tbody></table>
+      <p class="combined-note">Both reduce estimated leakage. Quegan’s much larger imbalance excursions drive image distortion.</p></div>
+      <div class="imbalance-explanation" data-a="up" data-step="2"><h3>Why does Quegan’s α grow?</h3><p>Scene correlations can bias the leakage estimates. At low cross-pol SNR, noise adds power without a matching contribution to X.</p><div class="m" style="font-size:27px;margin-top:12px">α<sub>Q</sub> = corrected HV power / X</div><p>A small |X| makes the ratio unstable; the one-pass estimator has no damping or rescaling.</p></div>
+      <div class="imbalance-evidence" data-a="up" data-step="3"><b>Near → far range</b><p>HV–VH coherence: 0.83 → 0.36<br>Median |α|: 1.17 → 3.18<br>Correlation with 1/coherence²: r = 0.97</p></div>
+    </div>
+  </div>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

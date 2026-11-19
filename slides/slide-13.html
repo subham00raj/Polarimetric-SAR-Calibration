@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 · Stage 2: channel imbalance · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+.channel-top{display:grid;grid-template-columns:620px 1fr;gap:42px;margin-top:22px}.tone-diagram{height:268px;background:var(--surf);border-radius:14px}.tone-diagram svg{width:100%;height:100%}.channel-caption{font-size:12px;line-height:1.5;color:var(--mute);margin-top:8px}.channel-caption a{color:inherit;text-decoration:underline}
+.phase-budget h3,.channel-methods h3{font-size:24px;margin-bottom:8px}.phase-budget p,.channel-methods p{font-size:14px;line-height:1.5;color:var(--mute)}.channel-eq{font-size:25px;line-height:1.5;margin:8px 0}.phase-budget .channel-eq{font-size:26px}
+.channel-methods{display:grid;grid-template-columns:1fr 1fr;gap:42px;margin-top:18px;border-top:1px solid var(--line);padding-top:19px}.channel-methods>div+div{border-left:1px solid var(--line);padding-left:32px}.channel-methods h4{font-size:11px;margin-bottom:9px}
+.channel-amplitude{display:flex;align-items:center;gap:25px;background:var(--surf);padding:16px 20px;border-radius:12px;margin-top:20px}.channel-amplitude>b{font-size:16px;max-width:110px}.channel-amplitude .m{font-size:25px;white-space:nowrap}.channel-amplitude>span:last-child{font-size:12px;line-height:1.5;color:var(--mute)}.channel-source{font-size:11px;line-height:1.5;color:var(--mute);margin-top:12px}
+</style>
+</head>
+<body data-slide-index="12">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">13 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide" data-sec="4" data-name="Stage 2: channel imbalance" data-tr="push">
+  <div class="eyebrow" data-a="up">04 · Calibration models · Stage 2 of 4</div>
+  <h2 class="title">Channel imbalance: balancing H against V</h2>
+  <div class="channel-top" data-a="up">
+    <div>
+      <div class="tone-diagram">
+        <svg viewBox="0 0 650 285" role="img" aria-label="Calibration tone splits into C h and C v paths, then traverses the H and V receive chains. Echo antenna paths are labelled A h and A v.">
+          <defs><marker id="tone-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor"/></marker></defs>
+          <g fill="none" stroke="#777" stroke-width="1.5"><path d="M590 75H410H200M590 225H410H200"/><path d="M300 150H365V75H410M365 150V225H410"/></g>
+          <g fill="#fff" stroke="#555"><rect x="70" y="57" width="130" height="36" rx="3"/><rect x="70" y="207" width="130" height="36" rx="3"/><rect x="205" y="132" width="95" height="36" rx="3"/><ellipse cx="590" cy="75" rx="10" ry="27"/><ellipse cx="590" cy="225" rx="10" ry="27"/></g>
+          <g font-family="Inter,sans-serif" font-size="14" fill="#222" text-anchor="middle"><text x="135" y="80">H receiver</text><text x="135" y="230">V receiver</text><text x="252" y="155">Transmitter</text><text x="620" y="79">H</text><text x="620" y="229">V</text><text x="550" y="135">Common calibration tone</text></g>
+          <g fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#tone-arrow)"><path d="M580 150H455V75H205"/><path d="M455 150V225H205"/></g>
+          <g fill="#111"><circle cx="455" cy="150" r="4"/><circle cx="410" cy="75" r="5"/><circle cx="410" cy="225" r="5"/></g>
+          <g font-family="Source Serif 4,serif" font-style="italic" font-size="19" fill="#222"><text x="270" y="62">R<tspan baseline-shift="sub" font-size="12">h</tspan></text><text x="270" y="248">R<tspan baseline-shift="sub" font-size="12">v</tspan></text><text x="505" y="62">A<tspan baseline-shift="sub" font-size="12">h</tspan></text><text x="505" y="248">A<tspan baseline-shift="sub" font-size="12">v</tspan></text><text x="465" y="110">C<tspan baseline-shift="sub" font-size="12">h</tspan></text><text x="465" y="200">C<tspan baseline-shift="sub" font-size="12">v</tspan></text><text x="372" y="110">T<tspan baseline-shift="sub" font-size="12">h</tspan></text><text x="372" y="200">T<tspan baseline-shift="sub" font-size="12">v</tspan></text></g>
+        </svg>
+      </div>
+      <p class="channel-caption">Same paths as the <a href="slide-09.html" data-slide-target="9">“Why calibration” diagram ↗</a>. Black: injected tone → C paths → receivers; it bypasses the target and antenna paths.</p>
+    </div>
+    <div class="phase-budget">
+      <h3>Separate the phase contributions</h3>
+      <p>After cross-talk removal; assume reciprocity and negligible Faraday rotation.</p>
+      <div class="channel-eq m">ψ<sub>HH</sub> = φ<sub>Th</sub> + 2φ<sub>Ah</sub> + φ<sub>Rh</sub></div>
+      <div class="channel-eq m">ψ<sub>VV</sub> = φ<sub>Tv</sub> + 2φ<sub>Av</sub> + φ<sub>Rv</sub></div>
+      <p>The A path is traversed twice: out to the antenna and back from it. Define each relative phase as H − V.</p>
+      <div class="channel-eq m">Δ<sub>co</sub> = arg ⟨O<sub>hh</sub>O<sub>vv</sub>*⟩ − φ<sub>co,true</sub><br>= φ<sub>T</sub> + 2φ<sub>A</sub> + φ<sub>R</sub></div>
+    </div>
+  </div>
+  <div class="channel-methods">
+    <div data-a="up" data-step="1"><h4>With an internal tone · Lou &amp; van Zyl</h4><h3>Measure the receiver; infer the transmitter</h3><div class="channel-eq m">φ<sub>cal</sub> = φ<sub>R</sub> + φ<sub>C</sub> ⇒ φ<sub>R</sub> = φ<sub>cal</sub> − φ<sub>C</sub><br>δ = arg ⟨O<sub>hv</sub>O<sub>vh</sub>*⟩ = φ<sub>R</sub> − φ<sub>T</sub> ⇒ φ<sub>T</sub> = φ<sub>R</sub> − δ</div><p>Measure stable φ<sub>A</sub> and φ<sub>C</sub> during installation. A common-source tone tracks receiver drift; reciprocity supplies δ from scene data.</p></div>
+    <div data-a="up" data-step="2"><h4>Without an internal tone · Zebker &amp; Lou</h4><h3>Use a known target phase instead</h3><div class="channel-eq m">s = Δ<sub>co</sub> − 2φ<sub>A</sub> = φ<sub>T</sub> + φ<sub>R</sub><br>φ<sub>R</sub> = (s + δ)/2 &nbsp; ; &nbsp; φ<sub>T</sub> = (s − δ)/2</div><p>Use a trihedral (φ<sub>co,true</sub> ≈ 0) or a suitable known-phase area, plus measured φ<sub>A</sub>. Average complex products before taking their phase.</p></div>
+  </div>
+  <div class="channel-amplitude" data-a="up" data-step="3"><b>Amplitude imbalance</b><span class="m">f = (P<sub>VV</sub>/P<sub>HH</sub>)<sup>1/4</sup> &nbsp; · &nbsp; g = (P<sub>HV</sub>/P<sub>VH</sub>)<sup>1/4</sup></span><span>CR: equal true HH/VV power. Reciprocal scene: equal true HV/VH power.<br>Fourth roots follow the symmetric per-leg amplitude convention; f and g are magnitudes.</span></div>
+  <div class="channel-source" data-a="up" data-step="3">van Zyl &amp; Kim, Ch. 4, Fig. 4-10 and Eqs. 4.3-2–8, pp. 179–183. Schematic simplifies the switches/couplers; the internal-tone method is explanatory, not a claim that tone measurements were used in this thesis.</div>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

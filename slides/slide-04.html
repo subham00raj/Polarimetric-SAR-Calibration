@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Radar resolution · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body data-slide-index="3">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">04 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide resolution-slide" data-sec="1" data-name="Radar resolution" data-tr="push">
+  <div class="eyebrow" data-a="up">01 · Fundamentals</div>
+  <h2 class="title">Resolution: can the radar distinguish two targets?</h2>
+  <div class="resolution-columns">
+    <div class="card resolution-card" data-a="up" style="--d:250ms">
+      <div class="row" style="align-items:center"><span class="chip ink">Range</span><span class="mute small">slant range: inclined radar-to-target direction</span></div>
+      <p class="resolution-intro">Two targets return echoes at different times.<br><b>A shorter pulse keeps those echoes separate.</b></p>
+      <div class="frame resolution-demo" data-sar-animation="range" data-label="Side view, with flight into the page. Targets A and B lie at different slant ranges. Long pulses produce one merged echo; short pulses produce two separate echoes."></div>
+      <div class="resolution-equations">
+        <span class="m">δ<sub>r</sub> = <span class="r">c</span>τ / 2</span>
+        <span class="resolution-definition">Shorter pulse τ<br>finer range resolution</span>
+      </div>
+      <p class="resolution-note">Ground range: <span class="m">δ<sub>g</sub> = <span class="r">c</span>τ / (2 sin θ)</span>. Here, θ is the incidence angle.</p>
+    </div>
+    <div class="card resolution-card" data-a="up" data-step="1">
+      <div class="row" style="align-items:center"><span class="chip ink">Azimuth</span><span class="mute small">azimuth: parallel to the flight path</span></div>
+      <p class="resolution-intro">A wide beam illuminates nearby targets together.<br><b>A narrower beam distinguishes them as the radar moves.</b></p>
+      <div class="frame resolution-demo" data-sar-animation="azimuth" data-label="Top view of a side-looking radar flying past targets A and B at the same range. A wide beam covers both together; a narrow beam encounters A, then B separately."></div>
+      <div class="resolution-equations">
+        <span class="m">δ<sub>a</sub> = <span class="r">R</span>β = <span class="r">R</span>λ / <span class="r">L</span></span>
+        <span class="resolution-definition">Narrower beam β<br>finer azimuth resolution</span>
+      </div>
+      <p class="resolution-note">Real aperture, at the same range R. A longer antenna L narrows the beam.</p>
+    </div>
+  </div>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

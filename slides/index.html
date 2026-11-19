@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PolSAR Calibration Defence</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#000}
+#presentation{display:block;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);border:0;width:min(100vw,calc(100vh * 16 / 9));height:min(100vh,calc(100vw * 9 / 16));aspect-ratio:16 / 9;background:#000}
+@supports(height:100dvh){#presentation{width:min(100vw,calc(100dvh * 16 / 9));height:min(100dvh,calc(100vw * 9 / 16))}}
+html.static,html.static body{height:auto;overflow:visible;background:#fff}
+.static .print-slide{display:block;border:0;width:1600px;height:900px;break-after:page;page-break-after:always}
+@page{size:1600px 900px;margin:0}
+</style>
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/index.js?v=fullscreen-fit-2" defer></script>
+</head>
+<body>
+<iframe id="presentation" title="Thesis presentation" allow="fullscreen" allowfullscreen></iframe>
+</body>
+</html>

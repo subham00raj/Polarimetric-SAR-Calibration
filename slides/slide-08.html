@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 · Polarimetric SAR · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body data-slide-index="7">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">08 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide" data-sec="1" data-name="Polarimetric SAR" data-tr="push">
+  <div class="eyebrow" data-a="up">01 · Fundamentals</div>
+  <h2 class="title">Polarimetric SAR: four channels per pixel</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px">
+    <div class="card polarization-card" data-a="up" style="--d:250ms">
+      <h4>Resultant electric field and its locus</h4>
+      <div class="polarization-equation m"><b class="r">E</b>(t) = <span class="r">a</span><sub>h</sub> cos(ωt) ĥ + <span class="r">a</span><sub>v</sub> cos(ωt + Δ) v̂</div>
+      <div class="frame polarization-loci" data-sar-animation="ellipse" data-label="Three simultaneous views at a fixed point: in-phase H and V components produce a linear locus; equal amplitudes with a 90-degree phase difference produce a circle; unequal amplitudes with a 60-degree difference produce an ellipse. Thin component arrows sum to the bold resultant electric field vector."></div>
+      <p class="polarization-fixed-note">At a <b>fixed point</b>, follow the tip of the resultant <span class="m">E</span>: it traces a line, a circle, or an ellipse.</p>
+      <div class="frame polarization-helix" data-sar-animation="propagation" data-label="A circularly polarized wave seen across space: electric field vectors in successive planes form a helix around the propagation axis. Its tip at any one fixed position moves on a circle."></div>
+      <p class="polarization-space-note">The helix shows the wave <b>across space</b>; its fixed-point polarization locus is circular.</p>
+    </div>
+    <div class="card ink" style="height:620px;display:flex;flex-direction:column" data-a="up" data-step="1">
+      <h4 style="color:#AAA">The scattering matrix</h4>
+      <div class="row" style="align-items:center;gap:22px;margin-top:22px">
+        <span class="m" style="font-size:30px"><b class="r" style="font-weight:600">E</b><sup>sc</sup> =</span>
+        <div class="mat" style="font-size:30px;gap:10px 14px;padding:10px 18px;font-style:normal">
+          <span data-a="pop" data-step="1" style="--d:300ms;background:#fff;color:#000;border-radius:10px;padding:10px 16px" class="m">S<sub>HH</sub></span>
+          <span data-a="pop" data-step="1" style="--d:420ms;border:1.5px dashed #888;border-radius:10px;padding:10px 16px" class="m">S<sub>HV</sub></span>
+          <span data-a="pop" data-step="1" style="--d:540ms;border:1.5px dashed #888;border-radius:10px;padding:10px 16px" class="m">S<sub>VH</sub></span>
+          <span data-a="pop" data-step="1" style="--d:660ms;background:#fff;color:#000;border-radius:10px;padding:10px 16px" class="m">S<sub>VV</sub></span>
+        </div>
+        <span class="m" style="font-size:30px"><b class="r" style="font-weight:600">E</b><sup>inc</sup></span>
+      </div>
+      <div class="row" style="gap:18px;margin-top:16px;font-size:14px;color:#AAA"><span class="row" style="gap:8px;align-items:center"><span class="sq" style="background:#fff"></span>co-pol</span><span class="row" style="gap:8px;align-items:center"><span class="sq" style="background:none;border:1.5px dashed #888"></span>cross-pol</span><span>Reciprocity: <span class="m">S<sub>HV</sub> = S<sub>VH</sub></span></span></div>
+      <p class="small" style="color:#CCC;margin-top:16px">Transmit H and V pulses alternately and receive both: each pulse fills one column of [S], and an H/V pair fills the matrix.</p>
+      <div class="frame" style="flex:1;margin-top:16px;min-height:245px" data-a="wipe" data-step="2" data-sar-animation="channels" data-label="Alternating H and V transmit pulses fill successive columns of the scattering matrix"></div>
+    </div>
+  </div>
+  <aside hidden data-sources="polarization-theory">Fixed-point polarization loci and spatial propagation: https://descanso.jpl.nasa.gov/propagation/1082/1082ch4.pdf ; https://eo4society.esa.int/wp-content/uploads/2025/02/11_PolSAR_ESA_EO_Forestry_LFF_2024.pdf . Δ in the real-field animation denotes V phase relative to H. The examples illustrate polarization states without assigning a handedness convention.</aside>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>
