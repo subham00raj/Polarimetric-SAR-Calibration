@@ -1,0 +1,16 @@
+/* Scoped to the first-principles algorithm slides. */
+.algo-lead{font-size:18px;color:var(--mute);line-height:1.45;margin-top:14px;max-width:1370px}
+.algo-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:35px;margin-top:20px}.algo-body>div+div{border-left:1px solid var(--line);padding-left:36px}
+.algo-body h3{font:500 27px var(--serif);margin-bottom:12px}.algo-body p{font-size:16px;line-height:1.45;color:var(--mute);margin-top:10px}.algo-eq{font:italic 28px/1.5 var(--serif);margin:12px 0}.algo-eq.compact{font-size:25px}.algo-label{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--mute);font-weight:600;margin-bottom:7px}
+.algo-mix{background:var(--surf);padding:18px 22px;border-radius:14px;margin:16px 0}.algo-mix .algo-eq{margin:0}.algo-mix p{font-size:14px;margin-top:6px}
+.algo-cov{display:flex;align-items:center;justify-content:center;gap:15px;margin:12px 0;font:italic 27px var(--serif)}.algo-cov .mat{grid-template-columns:repeat(4,auto);gap:6px 18px;padding:7px 16px;font-size:23px}.algo-cov .pair{background:#dedede;border-radius:4px;padding:1px 7px}.algo-cov .zero{background:#111;color:#fff;border-radius:4px;padding:1px 7px}
+.algo-loop{display:flex;align-items:stretch;gap:12px;margin-top:18px}.algo-loop .node{flex:1;border-top:2px solid #111;padding:14px 15px 0 0}.algo-loop strong{display:block;font-size:19px;margin-bottom:7px}.algo-loop p{font-size:14px;line-height:1.45;color:var(--mute)}.algo-loop .arrow{padding-top:12px;font-size:27px;color:var(--mute)}
+.algo-return{font-size:14px;color:var(--mute);margin-top:14px;text-align:center}.algo-bottom{display:grid;grid-template-columns:170px 1fr;gap:25px;background:var(--surf);border-radius:12px;padding:14px 20px;margin-top:15px;font-size:15px;line-height:1.45}.algo-bottom p{color:var(--mute)}.algo-source{font-size:11px;color:var(--mute);line-height:1.5;margin-top:13px}.algo-warning{border-top:1px solid var(--line);padding-top:13px;margin-top:15px;font-size:16px;line-height:1.5;color:var(--mute)}
+.algo-solve{display:flex;align-items:center;gap:13px;font:italic 26px var(--serif);justify-content:center;margin:17px 0}.algo-solve .mat{gap:8px 18px}.algo-solve .mat.col{font-size:26px}.algo-q .algo-body{margin-top:21px}.algo-q .algo-body h3{font-size:28px}.algo-q .algo-body p{font-size:16px}.algo-q .algo-bottom{margin-top:21px}
+.algo-a .algo-body,.algo-q .algo-body{margin-top:16px}
+.algo-a .algo-bottom,.algo-q .algo-bottom{padding:11px 18px;margin-top:13px}
+.algo-a .algo-body p,.algo-q .algo-body p{margin-top:7px}
+.algo-a .algo-cov,.algo-q .algo-cov{margin:9px 0}
+.algo-q .algo-warning{font-size:15px;line-height:1.4;margin-top:11px;padding-top:10px}
+.algo-q .algo-bottom .algo-eq{font-size:23px}
+.algo-source{margin-top:10px}

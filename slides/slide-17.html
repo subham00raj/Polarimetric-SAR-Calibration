@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>17 · Scattering types, Pauli and Yamaguchi · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="assets/decomposition.css">
+</head>
+<body data-slide-index="16">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">17 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide decomposition-principles" data-sec="4" data-name="Scattering types, Pauli and Yamaguchi" data-tr="push">
+  <div class="eyebrow" data-a="up">04 · Interpreting calibrated PolSAR</div>
+  <h2 class="title">Decomposition: from polarization to scattering mechanisms</h2>
+  <p class="decomp-lead" data-a="up">The radar measures complex HH, HV, VH and VV. Their relative amplitudes, phases and correlations help us interpret the scattering mechanisms within each image cell.</p>
+  <div class="scatter-types" data-a="up" data-step="1"><div class="scatter-type"><svg viewBox="0 0 260 95" role="img" aria-label="Surface / odd bounce scattering schematic"><defs><marker id="sc-arrow-0" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#111"/></marker></defs><g fill="none" stroke="#111" stroke-width="2"><path d="M25 73H235" stroke-width="3"/><path d="M67 15L125 73L183 15" marker-end="url(#sc-arrow-0)"/><path d="M50 77l8 6m15-6l8 6m15-6l8 6m15-6l8 6m15-6l8 6m15-6l8 6m15-6l8 6" stroke="#999"/></g></svg><h3>Surface / odd bounce</h3><p>A rough surface or plate: one dominant reflection. Ideal HH and VV are in phase.</p></div><div class="scatter-type"><svg viewBox="0 0 260 95" role="img" aria-label="Double bounce scattering schematic"><defs><marker id="sc-arrow-1" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#111"/></marker></defs><g fill="none" stroke="#111" stroke-width="2"><path d="M75 14V73H232" stroke-width="4"/><path d="M195 12L112 73L75 45L150 8" marker-end="url(#sc-arrow-1)"/></g></svg><h3>Double bounce</h3><p>Ground–wall or ground–trunk path: two reflections. Ideal HH and VV have opposite signs.</p></div><div class="scatter-type"><svg viewBox="0 0 260 95" role="img" aria-label="Volume scattering schematic"><defs><marker id="sc-arrow-2" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#111"/></marker></defs><g fill="none" stroke="#111" stroke-width="2"><path d="M95 20l25 13m-50 9l20-15m38 25l25-17m-62 30l23-14m47 20l-16-14m-35 30l20-10" stroke-width="4"/><path d="M30 20L77 40M161 46L220 20M124 64L168 89" marker-end="url(#sc-arrow-2)" stroke="#777"/></g></svg><h3>Volume</h3><p>Many differently oriented scatterers, such as branches: a mixture of returns often produces cross-pol.</p></div><div class="scatter-type"><svg viewBox="0 0 260 95" role="img" aria-label="Helix scattering schematic"><defs><marker id="sc-arrow-3" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#111"/></marker></defs><g fill="none" stroke="#111" stroke-width="2"><path d="M67 77V35H104V77H161V12H190V77" stroke="#888" stroke-width="3"/><path d="M130 23C175 20 175 67 131 68C100 68 99 41 125 40C145 39 146 56 133 57" marker-end="url(#sc-arrow-3)" stroke-width="2"/></g></svg><h3>Helix</h3><p>A handed, non-reflection-symmetric response; can occur in complex structures. It need not be a physical coil.</p></div></div>
+  <div class="decomp-methods">
+    <div data-a="up" data-step="2"><h3>Pauli · recombine the complex channels</h3><p>Add and subtract HH and VV <b>before</b> taking magnitudes. In-phase returns reinforce the sum; opposite-phase returns reinforce the difference.</p>
+      <div class="decomp-eq m">k<sub>P</sub> = (1/√2) [HH + VV, HH − VV, 2HV]<sup>T</sup></div>
+      <p class="decomp-small">For reciprocal data, HV = VH. This is a coherent basis change, not a fitted mixture of physical powers.</p>
+      <div class="pauli-meaning"><span><b>Sum</b> → surface-like</span><span><b>Difference</b> → double-bounce-like</span><span><b>Cross-pol</b> → depolarizing response</span></div>
+      <p><b>RGB in your code:</b> R = |HH − VV|, G = |HV + VH|/√2, B = |HH + VV|. Cross-pol is not uniquely volume scattering.</p>
+    </div>
+    <div data-a="up" data-step="3"><h3>Yamaguchi · fit an average power mixture</h3><p>One resolution cell can contain many scatterers. Average their channel correlations, then represent that covariance using four scattering models.</p>
+      <div class="decomp-eq m">C = ⟨k<sub>L</sub>k<sub>L</sub><sup>†</sup>⟩ ≈ ∑<sub>j ∈ {s,d,v,c}</sub> P<sub>j</sub>C<sub>j</sub></div>
+      <p class="decomp-small">k<sub>L</sub> = [HH, √2(HV + VH)/2, VV]<sup>T</sup>; model matrices C<sub>j</sub> normalized to unit trace.</p>
+      <div class="decomp-eq m">Span = tr(C) ≈ P<sub>s</sub> + P<sub>d</sub> + P<sub>v</sub> + P<sub>c</sub></div>
+      <p><b>RGB:</b> R = P<sub>d</sub>, G = P<sub>v</sub>, B = P<sub>s</sub>; helix P<sub>c</sub> is examined separately. These are model-dependent estimates, not unique ground-truth labels.</p>
+    </div>
+  </div>
+  <p class="decomp-bottom" data-a="up" data-step="4"><b>Why use this to check calibration?</b> Gain and phase errors change sums, differences and correlations, creating apparent mechanism changes. Your code uses per-pixel Pauli amplitudes and a 5 × 5 averaged four-component estimate; RGB contrast is stretched separately and should not be read as power fractions.</p>
+  <p class="decomp-source" data-a="up" data-step="4">Code: polcal/utilities/decomposition.py · Pauli: normalized reciprocal basis shown above; display amplitudes follow your code. Yamaguchi et al. (2005), IEEE TGRS 43(8), DOI: 10.1109/TGRS.2005.852084. Diagrams show idealized mechanisms.</p>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

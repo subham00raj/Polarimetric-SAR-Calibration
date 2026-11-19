@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>16 · Stage 4: Faraday rotation · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="assets/faraday.css">
+</head>
+<body data-slide-index="15">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">16 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide faraday-slide" data-sec="4" data-name="Stage 4: Faraday rotation" data-tr="push">
+  <div class="eyebrow" data-a="up">04 · Calibration models · Stage 4 of 4 · Spaceborne extension</div>
+  <h2 class="title">Faraday rotation: untwist propagation, not the target</h2>
+  <p class="fr-lead" data-a="up">A linear wave is the sum of two opposite circular components. In the magnetized ionosphere they accumulate different phases: their recombination rotates the polarization plane.</p>
+  <div class="fr-main">
+    <div data-a="up" data-step="1">
+      <div class="frame fr-animation" data-sar-animation="faraday" data-label="Animated ideal trihedral example: H polarization rotates by 20 degrees outbound and another 20 degrees on return; inverse rotation on both sides restores the target response."></div>
+      <p class="fr-caption">Ideal trihedral S = I: two passes add to 2Ω. For other targets, use the full matrix model.</p>
+      <p class="fr-physics">Ω = half the circular phase difference; magnitude scales with <span class="m">f<sup>−2</sup> ∫n<sub>e</sub>B<sub>∥</sub> ds</span>: electron density, field and path length.</p>
+    </div>
+    <div class="fr-model" data-a="up" data-step="2"><h3>Why two rotations?</h3><p>The wave crosses the ionosphere outward and back. Faraday rotation is non-reciprocal: the return pass does not undo the outward pass.</p>
+      <div class="fr-equation m">M = F(Ω) S F(Ω)</div>
+      <div class="fr-matrix"><span class="m">F(Ω) =</span><div class="mat"><span>cos Ω</span><span>sin Ω</span><span>−sin Ω</span><span>cos Ω</span></div></div>
+      <p>Even when the target has S<sub>HV</sub> = S<sub>VH</sub>, the observed M<sub>HV</sub> and M<sub>VH</sub> can differ.</p>
+      <div class="fr-equation m">Ŝ = F(−Ω̂) M F(−Ω̂)</div><p>Remove one rotation on each side. The return factor is not transposed.</p>
+    </div>
+  </div>
+  <div class="fr-estimate" data-a="up" data-step="3"><div><h4>How your code estimates Ω</h4><p>Transform to a circular basis: rotation becomes phase.</p><div class="fr-small-eq m">Z<sub>12</sub> = (M<sub>HV</sub> − M<sub>VH</sub>) + i(M<sub>HH</sub> + M<sub>VV</sub>)<br>Z<sub>21</sub> = (M<sub>VH</sub> − M<sub>HV</sub>) + i(M<sub>HH</sub> + M<sub>VV</sub>)</div></div><div><div class="fr-equation m">arg ⟨Z<sub>12</sub>Z<sub>21</sub>*⟩ = −4Ω<br>⇒ Ω̂ = −¼ arg ⟨Z<sub>12</sub>Z<sub>21</sub>*⟩</div><p>The opposite ±2Ω phases give a 4Ω difference. Average the complex product first; code default: 10 × 10 boxcar. Principal-angle ambiguity: |Ω| &lt; 45°.</p></div></div>
+  <p class="fr-scope" data-a="up" data-step="4"><b>Scope:</b> your runner applies one scene-wide Ω; maps use local averaging. Residual hardware errors and low SNR can bias Ω. Appreciable FR must also be accounted for in reciprocity-based hardware calibration. UAVSAR is below the ionosphere: a non-zero estimate alone is not evidence of ionospheric rotation.</p>
+  <p class="fr-source" data-a="up" data-step="4">Code: polcal/faraday/faraday.py and main.py · Meyer &amp; Nicoll (2008), Eqs. 13–15, DOI: 10.1109/TGRS.2008.2003002 · Standard [HH, HV; VH, VV] layout; estimator sign follows your code. Van Zyl &amp; Kim, §4.5.</p>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

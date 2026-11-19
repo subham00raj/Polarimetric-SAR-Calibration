@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>24 · Limitations and future scope · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+.scope-completed{display:flex;align-items:center;gap:25px;background:var(--surf);padding:16px 22px;border-radius:12px;margin-top:23px;font-size:14px;line-height:1.5}.scope-completed b{white-space:nowrap;font-size:16px}.scope-completed span{color:var(--mute)}
+.scope-columns{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}.scope-panel{background:var(--surf);border-radius:16px;padding:23px 26px}.scope-panel.ink{background:#111;color:#fff}.scope-panel>h3{font:500 29px var(--serif);margin-bottom:13px}.scope-row{display:grid;grid-template-columns:28px 1fr;gap:16px;border-top:1px solid #ddd;padding:13px 0}.scope-row:last-child{padding-bottom:0}.scope-row>span{font:500 12px var(--mono);color:#777;padding-top:3px}.scope-row h4{font-size:16px;text-transform:none;letter-spacing:0;font-weight:600}.scope-row p{font-size:16px;line-height:1.5;margin-top:7px;color:var(--mute)}.scope-row h4{color:#111}.scope-panel.ink .scope-row h4{color:#fff}.scope-panel.ink .scope-row{border-color:#333}.scope-panel.ink .scope-row p{color:#bbb}.scope-panel.ink .scope-row>span{color:#aaa}.scope-foot{font-size:14px;line-height:1.5;color:var(--mute);margin-top:16px}
+</style>
+</head>
+<body data-slide-index="23">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">24 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide" data-sec="7" data-name="Limitations and future scope" data-tr="push">
+  <div class="eyebrow" data-a="up">07 · Limitations and future scope</div>
+  <h2 class="title">Scope of the evidence and next steps</h2>
+  <div class="scope-columns">
+    <div class="scope-panel" data-a="left"><h3>Limits of the present evidence</h3>
+      <div class="scope-row"><span>01</span><div><h4>Evidence from one acquisition</h4><p>One L-band UAVSAR scene over flat Rosamond lakebed supports the comparison; model rankings may change in other scenes.</p></div></div>
+      <div class="scope-row"><span>02</span><div><h4>Range-based calibration statistics</h4><p>Range-line averaging can mix scattering populations. Low cross-pol SNR and small denominators affect Quegan’s estimates.</p></div></div>
+      <div class="scope-row"><span>03</span><div><h4>Stages tested as separate modules</h4><p>Point-target and distributed-target stages were evaluated separately; their combined accuracy remains to be measured.</p></div></div>
+      <div class="scope-row"><span>04</span><div><h4>Terrain effects remain untested</h4><p>The flat site does not test terrain orientation, changing local incidence angle, or complex forest and urban structure.</p></div></div>
+    </div>
+    <div class="scope-panel ink" data-a="right" data-step="1"><h3>What should be tested next</h3>
+      <div class="scope-row"><span>01</span><div><h4>Broaden independent validation</h4><p>Test more acquisitions, incidence angles, land covers and bands. Quantify bias and uncertainty using independent references.</p></div></div>
+      <div class="scope-row"><span>02</span><div><h4>Make estimation sensitive to data quality</h4><p>Test local windows, SNR/coherence masks and regularization. Check stability without suppressing real scene variation.</p></div></div>
+      <div class="scope-row"><span>03</span><div><h4>Validate the complete processing chain</h4><p>Connect the modules; assess cumulative error with surveyed reflectors, HV/VH consistency and scattering signatures.</p></div></div>
+      <div class="scope-row"><span>04</span><div><h4>Evaluate terrain-aware processing</h4><p>Test DEM-based geometry and orientation diagnostics on high-relief scenes; separate terrain effects from calibration errors.</p></div></div>
+    </div>
+  </div>
+  <p class="scope-foot" data-a="up" data-step="2">Validation priority: a correction should improve channel consistency while preserving independently known radiometry and scattering behavior.</p>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

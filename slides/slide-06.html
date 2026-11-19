@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · Synthetic aperture and Doppler history · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body data-slide-index="5">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">06 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide synthetic-slide" data-sec="1" data-name="Synthetic aperture and Doppler history" data-tr="push">
+  <div class="eyebrow" data-a="up">01 · Fundamentals</div>
+  <h2 class="title">A long aperture from motion and Doppler history</h2>
+  <div class="synthetic-layout">
+    <div class="card synthetic-visual" data-a="up" style="--d:200ms">
+      <div class="frame" data-sar-animation="aperture" data-label="A side-looking radar flies past a fixed target. The target Doppler shifts from positive on approach, through zero at closest approach, to negative on recession. Matched filtering compensates the changing echo phase before coherent summation focuses the target."></div>
+    </div>
+    <div class="synthetic-explanation">
+      <div class="synthetic-step" data-a="up" style="--d:300ms"><span class="num">1</span><div><h3>One target, many radar positions</h3><p>The target remains in the antenna beam over a flight distance <span class="m">L<sub>sa</sub></span>. Each pulse records a complex echo with a different slant range and phase.</p></div></div>
+      <div class="synthetic-step" data-a="up" data-step="1"><span class="num">2</span><div><h3>Motion creates a Doppler history</h3><p>Range decreases on approach, is smallest at broadside, then increases. The corresponding Doppler sweeps from positive through zero to negative.</p><div class="synthetic-equation m">φ(t) = −4π<span class="r">R</span>(t) / λ</div></div></div>
+      <div class="synthetic-step" data-a="up" data-step="2"><span class="num">3</span><div><h3>Azimuth compression focuses the target</h3><p>A matched filter compensates the predicted phase history. Echoes for the same location add coherently, concentrating energy into a narrow azimuth response.</p></div></div>
+      <div class="synthetic-result" data-a="up" data-step="3">
+        <div class="m">L<sub>sa</sub> ≈ <span class="r">R</span>λ / <span class="r">L</span></div>
+        <div class="m">δ<sub>a</sub> ≈ <span class="r">R</span>λ / (2L<sub>sa</sub>) ≈ <span class="r">L</span> / 2</div>
+        <p><span class="m"></span>L: physical antenna length. Ideal full-aperture stripmap result; weighting and processing affect practical resolution.</p>
+      </div>
+    </div>
+  </div>
+  <aside hidden data-sources="Chapters/Chapter1.tex">Sources: thesis Chapter 1, Azimuth Resolution in SAR; https://www.earthdata.nasa.gov/s3fs-public/2024-06/sci-sar-userguide.pdf .</aside>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

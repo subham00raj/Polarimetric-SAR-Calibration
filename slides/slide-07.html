@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 · Multilooking and the resolution trade-off · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body data-slide-index="6">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">07 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide multilook-slide" data-sec="1" data-name="Multilooking and the resolution trade-off" data-tr="push">
+  <div class="eyebrow" data-a="up">01 · Fundamentals</div>
+  <h2 class="title">Multilooking: less speckle, less spatial detail</h2>
+  <div class="multilook-top">
+    <div class="card multilook-animation" data-a="up" style="--d:200ms"><div class="frame" data-sar-animation="multilook" data-label="A 1-column by 8-row block of intensity samples is averaged into one output pixel, reducing speckle at the cost of spatial detail."></div></div>
+    <div class="multilook-summary">
+      <div data-a="up" style="--d:300ms"><h3>Speckle comes from interference</h3><p><b>Constructive interference:</b> scattered waves reinforce, creating bright pixels. <b>Destructive interference:</b> waves cancel, creating dark pixels. Their phase-dependent combination produces speckle.</p></div>
+      <div data-a="up" data-step="1"><h3>Why average multiple samples?</h3><p>Averaging linear intensity <span class="m">|S|²</span> reduces brightness fluctuations: <b>better radiometric precision, coarser spatial detail</b>.</p></div>
+      <div data-a="up" data-step="1"><h3>Why can range and azimuth resolution differ?</h3><p>Range depends on pulse bandwidth; azimuth depends on the Doppler aperture. The two directions are processed and sampled differently.</p></div>
+    </div>
+  </div>
+  <div class="multilook-comparison" data-a="up" data-step="2">
+    <!-- Uploaded asset names are reversed: ml.jpg is the square original; slc.jpg is the wide multilooked view. -->
+    <figure class="sar-original"><div class="sar-grid-stage"><div class="frame"><img src="assets/ml.jpg" alt="Original square 3000 by 3000 single-look Rosamond HH view"></div></div><figcaption><b>Before: single-look SAR</b><br>3000 × 3000 samples</figcaption></figure>
+    <figure class="sar-multilooked"><div class="sar-grid-stage"><div class="frame"><img src="assets/slc.jpg" alt="Wide 375 by 3000 Rosamond HH view after multilooking"></div></div><figcaption><b>After: multilooked SAR</b><br>375 × 3000 samples · 1 range × 8 azimuth averaging</figcaption></figure>
+    <figure class="optical-reference"><div class="sar-grid-stage"><div class="frame"><img src="assets/optical.jpg" alt="Optical RGB reference of the same Rosamond lakebed for comparison with multilooked SAR"></div></div><figcaption><b>Optical RGB reference</b><br>The same lakebed, shown for spatial comparison</figcaption></figure>
+  </div>
+  <aside hidden data-sources="Chapters/Chapter1.tex; Chapters/Chapter3.tex">Sources: thesis Chapters 1 and 3; user-corrected overview dimensions: 3000 × 3000 before, 375 × 3000 after; eight-row averaging; dataset pixel spacing from Study area slide. https://earthdata.nasa.gov/s3fs-public/2025-04/SARHB_CH5_Content.pdf ; https://sentiwiki.copernicus.eu/web/s1-products . The animation illustrates spatial intensity averaging, not independent subaperture looks.</aside>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15 · Cross-talk: Quegan model · PolSAR Defence</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="assets/algorithms.css">
+</head>
+<body data-slide-index="14">
+<div id="stage">
+
+<header id="topbar">
+  <div class="brand"><b><i></i></b>PolSAR Cal</div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="spacer"></div>
+  <div class="who">Subham Raj · IIT Kanpur</div>
+  <div class="count" id="count">15 / 26</div>
+</header>
+
+<div id="hint"><kbd>→</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>M</kbd> menu &nbsp; <kbd>F</kbd> fullscreen</div>
+<div id="curtain"><div class="cn"></div><div class="ct"></div><div class="cs"></div><div class="cbar"></div></div>
+
+
+<section class="slide algo-q" data-sec="4" data-name="Cross-talk: Quegan model" data-tr="push">
+  <div class="eyebrow" data-a="up">04 · Calibration models · Stage 3 of 4</div>
+  <h2 class="title">Quegan: infer leakage from unwanted correlations</h2>
+  <p class="algo-lead" data-a="up">In a reflection-symmetric calibration area, true co-pol and cross-pol returns are uncorrelated on average. Measured correlation reveals channel mixing.</p>
+  <div class="algo-body">
+    <div data-a="up" data-step="1"><div class="algo-label">The additional scene assumption</div><h3>True HH/VV must not predict true cross-pol</h3>
+      <div class="algo-eq">⟨S<sub>HH</sub>S<sub>HV</sub>*⟩ = ⟨S<sub>VV</sub>S<sub>HV</sub>*⟩ = 0</div>
+      <div class="algo-cov"><span>Σ =</span><div class="mat"><span>P<sub>H</sub></span><span class="zero">0</span><span class="zero">0</span><span>D</span><span class="zero">0</span><span>P<sub>X</sub></span><span>P<sub>X</sub></span><span class="zero">0</span><span class="zero">0</span><span>P<sub>X</sub></span><span>P<sub>X</sub></span><span class="zero">0</span><span>D*</span><span class="zero">0</span><span class="zero">0</span><span>P<sub>V</sub></span></div></div>
+      <p>Ideal noise-free covariance, also using reciprocity. The black zeros are <b>ensemble averages</b>; cross-pol power P<sub>X</sub> is not zero.</p>
+      <p>Correlating measured HV with HH and VV exposes their leaked contributions.</p>
+    </div>
+    <div data-a="up" data-step="2"><div class="algo-label">Solve for those leaked contributions</div><h3>Two correlations → two leakage coefficients</h3>
+      <div class="algo-solve"><div class="mat"><span>C<sub>11</sub></span><span>C<sub>41</sub></span><span>C<sub>14</sub></span><span>C<sub>44</sub></span></div><div class="mat col"><span>u</span><span>v</span></div><span>=</span><div class="mat col"><span>C<sub>21</sub></span><span>C<sub>24</sub></span></div></div>
+      <p>In the thesis convention: channels 1–4 are HH, HV, VH, VV. This small-cross-talk system separates the HH and VV contributions to HV; repeat for VH to obtain z and w.</p>
+      <div class="algo-eq compact">Δ = C<sub>11</sub>C<sub>44</sub> − |C<sub>14</sub>|²<br>u = (C<sub>44</sub>C<sub>21</sub> − C<sub>41</sub>C<sub>24</sub>)/Δ</div>
+      <p>No iteration: invert the 2 × 2 system directly. It needs Δ sufficiently different from zero.</p>
+    </div>
+  </div>
+  <div class="algo-bottom" data-a="up" data-step="3"><b>Then estimate cross-pol imbalance</b><div><div class="algo-eq compact" style="margin:0">X = C<sub>32</sub> − zC<sub>12</sub> − wC<sub>42</sub> &nbsp; ; &nbsp; α<sub>Q</sub> = (C<sub>22</sub> − uC<sub>12</sub> − vC<sub>42</sub>)/X</div><p>X is the leakage-corrected VH–HV correlation. Compare corrected HV power with that shared signal, form M, then apply M<sup>−1</sup> to each pixel.</p></div></div>
+  <div class="algo-warning" data-a="up" data-step="4"><b>Why can it fail?</b> Real scene correlations can be mistaken for leakage. At low cross-pol SNR, noise adds power without the same coherent contribution to X. Small |X| makes α unstable; one pass cannot rescue invalid assumptions.</div>
+  <p class="algo-source" data-a="up" data-step="4">Quegan (1994), DOI: 10.1109/36.285192; thesis Ch. 3 implementation. Covariance entries are complex; * denotes conjugation. α<sub>Q</sub> uses Quegan’s convention and should not be equated directly to Ainsworth’s α.</p>
+</section>
+
+
+<div id="sheet"><div class="panel"><div class="grab"></div><div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:28px;font-family:var(--serif);font-weight:500">Jump to slide</h3><span class="chip sm">Esc to close</span></div><div class="items" id="items"></div></div></div>
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+</body>
+</html>

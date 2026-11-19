@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>09 · Why calibration is required · PolSAR Defence</title>
+
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/deck.css">
+</head>
+
+<body data-slide-index="8">
+<div id="stage">
+
+  <header id="topbar">
+    <div class="brand"><b><i></i></b>PolSAR Cal</div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="spacer"></div>
+    <div class="who">Subham Raj · IIT Kanpur</div>
+    <div class="count" id="count">09 / 26</div>
+  </header>
+
+  <div id="hint">
+    <kbd>→</kbd> next &nbsp;
+    <kbd>←</kbd> back &nbsp;
+    <kbd>M</kbd> menu &nbsp;
+    <kbd>F</kbd> fullscreen
+  </div>
+
+  <div id="curtain">
+    <div class="cn"></div>
+    <div class="ct"></div>
+    <div class="cs"></div>
+    <div class="cbar"></div>
+  </div>
+
+  <section class="slide calibration-need-slide"
+           data-sec="2"
+           data-name="Why calibration is required">
+
+    <div class="eyebrow" data-a="up">
+      02 · Why calibration
+    </div>
+
+    <h2 class="title">Why is calibration required?</h2>
+
+    <div class="calibration-circuit-layout">
+
+      <div class="calibration-circuit-visual">
+
+        <div class="card calibration-circuit-animation"
+             data-a="up"
+             style="--d:200ms">
+          <div class="calibration-mode-controls" role="group" aria-label="Choose an instrument effect">
+            <button type="button" data-calibration-select="amplitude" aria-pressed="true">Amplitude imbalance</button>
+            <button type="button" data-calibration-select="phase" aria-pressed="false">Phase imbalance</button>
+            <button type="button" data-calibration-select="crosstalk" aria-pressed="false">Cross-talk</button>
+          </div>
+          <div class="frame"
+               data-sar-animation="calibrationChain"
+               data-calibration-mode="amplitude"
+               data-label="Hardware phase paths adapted from van Zyl and Kim, Figure 4-10. The calibration-reference feed is intentional; the cross-talk mode adds a separate illustrative leakage overlay.
+               Unequal gains change relative signal amplitudes;
+               unequal electrical delays change relative phases;
+               imperfect isolation allows energy to leak between
+               polarization paths. These instrument effects distort
+               the measured target response.">
+          </div>
+        </div>
+        <a href="slide-13.html" data-slide-target="13" style="display:inline-block;margin-top:10px;color:inherit;font-size:13px;text-decoration:underline">How the calibration tone corrects channel phase → slide 13</a>
+      </div>
+
+      <div class="calibration-circuit-text">
+
+        <div data-a="up" style="--d:300ms">
+          <h3>Hardware and propagation effects</h3>
+
+          <p>
+            <b>Amplitude imbalance:</b>
+            unequal H/V gains bias channel ratios and
+            relative scattering strengths.
+          </p>
+
+          <p>
+            <b>Relative phase bias:</b>
+            unequal electrical path lengths (T, A and R paths) shift the phase
+            differences between polarization channels.
+          </p>
+
+          <p>
+            <b>Cross-talk:</b>
+            imperfect isolation mixes H and V signals,
+            contaminating weak cross-polarized returns.
+          </p>
+          <p><b>Ionosphere (spaceborne SAR):</b>
+            Faraday rotation mixes H/V, especially at L/P-band.
+            Dispersive delay and phase shifts also need propagation correction.</p>
+        </div>
+
+        <div class="calibration-circuit-noise" data-a="up" data-step="1">
+          <h3>Noise also affects the measurement</h3>
+          <p><b>Blackbody radiation:</b>
+            thermal radiation from the scene contributes to antenna noise
+            through its brightness temperature.</p>
+          <p><b>Receiver thermal noise:</b>
+            random electronic fluctuations add noise and a positive bias
+            to measured intensity.</p>
+          <p><b>Random errors:</b>
+            measurement fluctuations reduce SNR and the reliability of
+            estimated calibration parameters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="sheet">
+    <div class="panel">
+      <div class="grab"></div>
+
+      <div class="row"
+           style="justify-content:space-between;
+                  align-items:center;
+                  margin-bottom:14px">
+        <h3 style="font-size:28px;
+                   font-family:var(--serif);
+                   font-weight:500">
+          Jump to slide
+        </h3>
+        <span class="chip sm">Esc to close</span>
+      </div>
+
+      <div class="items" id="items"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="assets/slide-manifest.js?v=61babb276464"></script>
+<script src="assets/deck.js?v=fullscreen-fit-2"></script>
+<script src="assets/fundamentals.js"></script>
+
+</body>
+</html>
