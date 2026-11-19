@@ -223,7 +223,7 @@ repository root, so that `import polcal` works.
 | 5.2 Radiometric calibration | `uv run python -m polcal.radiocal.radiometric_calibration` | `.env`, `Input.csv`, `tifffile` | `output/*_calibrated.tiff`, `output/Output.csv` | ~1 min |
 | 5.3 Ainsworth calibration | `uv run python -m polcal.ainsworth.main` | `data/*.npy` | `polcal/ainsworth/output/` | a few minutes |
 | 5.4 Quegan calibration | `uv run python -m polcal.quegan.main` | `data/*.npy` | `polcal/quegan/output/` | a few minutes |
-| 5.5 Faraday rotation check | `uv run python -m polcal.faraday.main` | step 5.3 output | `polcal/faraday/output/` | ~1 min |
+| 5.5 Faraday rotation correction | `uv run python -m polcal.faraday.main` | `data/*.npy` (or `--input <folder>`) | `polcal/faraday/output/` | ~1 min |
 | 5.6 Re-plot diagnostics (optional) | `uv run python plot_diagnostics.py` | step 5.3 output | `polcal/ainsworth/output/` | < 1 min |
 
 Notes:
@@ -235,10 +235,23 @@ Notes:
   parameter estimation, smoothing, applying the correction, previews, a summary
   printed to the console, and diagnostic plots. On the full 61349 × 9874 scene
   they take about **2.0 h** (Ainsworth) and **1.6 h** (Quegan).
-* **5.5** self-tests the Bickel–Bates estimator by injecting known rotations,
-  estimates Faraday rotation Ω on the uncalibrated and the Ainsworth-calibrated
-  data, and applies the correction. Expected result: Ω ≈ 0° after calibration,
-  because UAVSAR flies below the ionosphere.
+* **5.5** implements Meyer & Nicoll (2008), eqs. 13–15 (Bickel–Bates
+  estimator). It takes uncalibrated `HH/HV/VH/VV.npy` from `data/`, or from
+  another folder with `--input <folder>`. It then:
+  1. self-tests the estimator by injecting known rotations (1–20°) into the
+     input and recovering them,
+  2. estimates Faraday rotation Ω (scene value, per-pixel map, per range line),
+  3. applies the correction S = F(−Ω)·M·F(−Ω) and re-estimates Ω,
+  4. prints a report comparing Uncalibrated vs Calibrated, and saves the
+     corrected channels as `calibrated_*.npy`.
+
+  Options: `--output <folder>`, `--window <n>` (boxcar size, default 10).
+  Spikes in the per-range-line plot are the corner-reflector columns: a few
+  very bright point targets dominate those columns. They are not ionospheric.
+  On data that has not been corrected for cross-talk, part of the estimated Ω
+  is apparent rotation caused by cross-talk (Meyer & Nicoll, Sec. II-C2). On
+  the Rosamond subset Ω is +1.17° on uncalibrated data and +0.08° after
+  Ainsworth calibration, because UAVSAR flies below the ionosphere.
 
 Pauli and Yamaguchi decompositions are library functions in
 `polcal/utilities/decomposition.py` (`pauli_rgb`, `yamaguchi_rgb`). Call them
@@ -252,14 +265,14 @@ on the uncalibrated and calibrated arrays from a notebook or script.
 |---|---|
 | `polcal/ainsworth/output/` | `calibrated_{HH,HV,VH,VV}.npy`, `ainsworth_parameters.npz` (u, v, w, z, α per range line), `calibrated.png`, `calibrated_hv_vs_vh_scatter.png`, `calibrated_hv_vh_power_db.png` |
 | `polcal/quegan/output/` | the same set of files for the Quegan model |
-| `polcal/faraday/output/` | `faraday_results.json`, `faraday_rotation.png`, `faraday_corrected_*.npy` |
+| `polcal/faraday/output/` | `calibrated_{HH,HV,VH,VV}.npy` (Faraday-corrected), `faraday_results.json`, `faraday_rotation.png` |
 | `output/` | radiometrically calibrated / uncalibrated GeoTIFFs, `Output.csv` |
 
 Reference numbers from the thesis, to check a run against:
 
 * Cross-talk reduction: **12–27 dB** (Ainsworth), **5–31 dB** (Quegan)
 * |α|: **−6.25 to +1.25 dB** (Ainsworth), **−5.35 to +18.55 dB** (Quegan)
-* Faraday rotation on Ainsworth-calibrated data: **≈ +0.08°**
+* Faraday rotation Ω on the Rosamond subset: **+1.17°** uncalibrated, **≈ +0.08°** after Ainsworth calibration; residual after Faraday correction **0.000°**
 
 ---
 
@@ -272,7 +285,7 @@ Reference numbers from the thesis, to check a run against:
 | `ModuleNotFoundError: tifffile` / `torch` | `uv add tifffile` / `uv add torch` (section 2.5) |
 | `TypeError: expected str ... NoneType` in radiocal / find_cr / covariance | `.env` is missing or a key is misspelt (section 4) |
 | `FileNotFoundError: data/HH.npy` | Cut the subset first (section 3.2) |
-| `FileNotFoundError: .../ainsworth/output/calibrated_HH.npy` when running Faraday | Run step 5.3 first |
+| `FileNotFoundError: ... is missing HH.npy` when running Faraday | Point `--input` at a folder containing `HH.npy`, `HV.npy`, `VH.npy`, `VV.npy` |
 | `ValueError: cannot reshape` / memmap size error on `.slc` | The file is incomplete or the wrong resolution: the 1x1 SLC must be exactly 61349 × 9874 × 8 bytes |
 | Out of memory | Run on the 3000 × 3000 subset; the full scene needs much more RAM |
 | `requires-python >=3.14` error | `uv python install 3.14`, then `uv sync` |
@@ -292,5 +305,5 @@ polcal/
 ├── ainsworth/               Ainsworth et al. (2006) iterative calibration
 │   └── calibration/         config, estimator, core, smoothing, validation, I/O
 ├── quegan/                  Quegan (1994) closed-form calibration (same layout)
-└── faraday/                 Bickel–Bates Faraday rotation estimate and correction
+└── faraday/                 Faraday rotation estimate and correction (Meyer & Nicoll 2008)
 ```
