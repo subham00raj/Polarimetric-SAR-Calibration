@@ -1,16 +1,50 @@
-*.html
-*.txt
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- Secrets / local config ----
+.env
+.env.*
+
+# ---- Data (large, download with polcal/utilities/get_uavsar_data.py) ----
+data/
+Covariance/
+*.slc
 *.ann
 *.llh
 *.lkv
-*.slc
-.env
-*.png
-.whl
 *.npy
-__pycache__/
-Covariance/
+*.npz
+*.tif
+*.tiff
+
+# ---- Generated outputs ----
 output/
-data/
-!requirements.txt
+figures/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.html
+*.txt
+
+# ---- Thesis, reports and papers (not code) ----
 thesis/
+docs/
+papers/
+*.pdf
+*.pptx
+*.docx
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
