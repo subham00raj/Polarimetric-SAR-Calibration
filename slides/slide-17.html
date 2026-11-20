@@ -42,8 +42,6 @@
       <p><b>RGB:</b> R = P<sub>d</sub>, G = P<sub>v</sub>, B = P<sub>s</sub>; helix P<sub>c</sub> is examined separately. These are model-dependent estimates, not unique ground-truth labels.</p>
     </div>
   </div>
-  <p class="decomp-bottom" data-a="up" data-step="4"><b>Why use this to check calibration?</b> Gain and phase errors change sums, differences and correlations, creating apparent mechanism changes. Your code uses per-pixel Pauli amplitudes and a 5 × 5 averaged four-component estimate; RGB contrast is stretched separately and should not be read as power fractions.</p>
-  <p class="decomp-source" data-a="up" data-step="4">Code: polcal/utilities/decomposition.py · Pauli: normalized reciprocal basis shown above; display amplitudes follow your code. Yamaguchi et al. (2005), IEEE TGRS 43(8), DOI: 10.1109/TGRS.2005.852084. Diagrams show idealized mechanisms.</p>
 </section>
 
 

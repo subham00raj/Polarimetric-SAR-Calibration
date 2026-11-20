@@ -43,7 +43,6 @@
   </div>
   <div class="algo-bottom" data-a="up" data-step="3"><b>Then estimate cross-pol imbalance</b><div><div class="algo-eq compact" style="margin:0">X = C<sub>32</sub> − zC<sub>12</sub> − wC<sub>42</sub> &nbsp; ; &nbsp; α<sub>Q</sub> = (C<sub>22</sub> − uC<sub>12</sub> − vC<sub>42</sub>)/X</div><p>X is the leakage-corrected VH–HV correlation. Compare corrected HV power with that shared signal, form M, then apply M<sup>−1</sup> to each pixel.</p></div></div>
   <div class="algo-warning" data-a="up" data-step="4"><b>Why can it fail?</b> Real scene correlations can be mistaken for leakage. At low cross-pol SNR, noise adds power without the same coherent contribution to X. Small |X| makes α unstable; one pass cannot rescue invalid assumptions.</div>
-  <p class="algo-source" data-a="up" data-step="4">Quegan (1994), DOI: 10.1109/36.285192; thesis Ch. 3 implementation. Covariance entries are complex; * denotes conjugation. α<sub>Q</sub> uses Quegan’s convention and should not be equated directly to Ainsworth’s α.</p>
 </section>
 
 
