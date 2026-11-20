@@ -41,8 +41,6 @@
     </div>
   </div>
   <div class="fr-estimate" data-a="up" data-step="3"><div><h4>How your code estimates Ω</h4><p>Transform to a circular basis: rotation becomes phase.</p><div class="fr-small-eq m">Z<sub>12</sub> = (M<sub>HV</sub> − M<sub>VH</sub>) + i(M<sub>HH</sub> + M<sub>VV</sub>)<br>Z<sub>21</sub> = (M<sub>VH</sub> − M<sub>HV</sub>) + i(M<sub>HH</sub> + M<sub>VV</sub>)</div></div><div><div class="fr-equation m">arg ⟨Z<sub>12</sub>Z<sub>21</sub>*⟩ = −4Ω<br>⇒ Ω̂ = −¼ arg ⟨Z<sub>12</sub>Z<sub>21</sub>*⟩</div><p>The opposite ±2Ω phases give a 4Ω difference. Average the complex product first; code default: 10 × 10 boxcar. Principal-angle ambiguity: |Ω| &lt; 45°.</p></div></div>
-  <p class="fr-scope" data-a="up" data-step="4"><b>Scope:</b> your runner applies one scene-wide Ω; maps use local averaging. Residual hardware errors and low SNR can bias Ω. Appreciable FR must also be accounted for in reciprocity-based hardware calibration. UAVSAR is below the ionosphere: a non-zero estimate alone is not evidence of ionospheric rotation.</p>
-  <p class="fr-source" data-a="up" data-step="4">Code: polcal/faraday/faraday.py and main.py · Meyer &amp; Nicoll (2008), Eqs. 13–15, DOI: 10.1109/TGRS.2008.2003002 · Standard [HH, HV; VH, VV] layout; estimator sign follows your code. Van Zyl &amp; Kim, §4.5.</p>
 </section>
 
 
